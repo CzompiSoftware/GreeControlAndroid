@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<locale android:name="en-GB"/> &lt;!&ndash; English (United Kingdom) &ndash;&gt;
+    <locale android:name="en-US"/> &lt;!&ndash; English (United States) &ndash;&gt;-->
+    <locale android:name="en"/> <!-- English (United States) -->
+    <locale android:name="hu"/> <!-- Hungarian -->
+</locale-config>
