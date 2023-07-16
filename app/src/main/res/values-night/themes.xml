@@ -12,4 +12,6 @@
         <item name="colorPrimaryTextVariant">@color/colorPrimaryTextDark</item>
         <item name="colorSecondaryTextVariant">@color/colorSecondaryTextDark</item>
     </style>
+    <style name="Theme.GreeControl.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.GreeControl.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark"/>
 </resources>
