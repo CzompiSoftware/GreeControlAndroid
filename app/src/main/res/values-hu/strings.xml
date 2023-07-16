@@ -25,10 +25,10 @@
     <string name="mode_heat">Fűtés</string>
     <string name="device_item_mode">Üzemmód:</string>
     <string name="device_item_temperature">Hőmérséklet:</string>
-    <string name="switch_health">Egészséges</string>
+    <string name="switch_health">Egészség</string>
     <string name="switch_turbo">Turbó</string>
     <string name="switch_air">Levegő</string>
-    <string name="switch_quiet">Csöndes</string>
+    <string name="switch_quiet">Csendes</string>
     <string name="switch_saving">Energiatakarékos</string>
     <string name="switch_xfan">Szárítás (X-Fan)</string>
     <string name="switch_sleep">Alvás</string>
