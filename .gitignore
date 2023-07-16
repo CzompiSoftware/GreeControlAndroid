@@ -203,9 +203,13 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,Gradle,Android,Intellij
+
 .DS_Store
 **/.DS_Store
-**/org.eclipse.**.prefs
-*.jks
 Thumbs.db
 **/Thumbs.db
+
+**/org.eclipse.**.prefs
+*.jks
+.idea/**
+!.idea/copyright/GPLv3.xml
