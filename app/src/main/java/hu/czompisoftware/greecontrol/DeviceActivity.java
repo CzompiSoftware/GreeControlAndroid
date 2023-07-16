@@ -1,37 +1,20 @@
 package hu.czompisoftware.greecontrol;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import com.google.android.material.color.MaterialColors;
 import hu.czompisoftware.greecontrol.Gree.Device.Device;
 import hu.czompisoftware.greecontrol.Gree.Device.DeviceManager;
 import hu.czompisoftware.greecontrol.Gree.Device.DeviceManagerEventListener;
-import hu.czompisoftware.greecontrol.R;
-
-/*
- * This file is part of GreeRemoteAndroid.
- *
- * GreeRemoteAndroid is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * GreeRemoteAndroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
- */
 
 /*
  * This file is part of GreeRemoteAndroid.
@@ -107,7 +90,7 @@ public class DeviceActivity extends AppCompatActivity {
         mTemperatureTextView.setText(String.format("%d", mDevice.getTemperature()));
 
         int activeColor = ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null);
-        int inactiveColor = ResourcesCompat.getColor(getResources(), R.color.colorSecondaryText, null);
+        int inactiveColor = MaterialColors.getColor(mTemperatureTextView, R.attr.colorSecondaryTextVariant, Color.BLACK);
 
         final Device.Mode mode = mDevice.getMode();
 

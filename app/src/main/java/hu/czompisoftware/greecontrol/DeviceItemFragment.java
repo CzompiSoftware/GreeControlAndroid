@@ -2,22 +2,20 @@ package hu.czompisoftware.greecontrol;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import hu.czompisoftware.greecontrol.Gree.Device.Device;
 import hu.czompisoftware.greecontrol.Gree.Device.DeviceManager;
 import hu.czompisoftware.greecontrol.Gree.Device.DeviceManagerEventListener;
-import hu.czompisoftware.greecontrol.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This file is part of GreeRemoteAndroid.
