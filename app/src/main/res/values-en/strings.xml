@@ -1,0 +1,57 @@
+﻿<!--
+  ~ This file is part of GreeRemoteAndroid.
+  ~
+  ~ GreeRemoteAndroid is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ GreeRemoteAndroid is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Gree Control</string>
+    <string name="action_settings">Settings</string>
+    <string name="mode_auto">Automatic</string>
+    <string name="mode_cool">Cool</string>
+    <string name="mode_fan">Fan</string>
+    <string name="mode_dry">Dry</string>
+    <string name="mode_heat">Heat</string>
+    <string name="device_item_mode">Mode:</string>
+    <string name="device_item_temperature">Temperature:</string>
+    <string name="switch_health">Health</string>
+    <string name="switch_turbo">Turbo</string>
+    <string name="switch_air">Air</string>
+    <string name="switch_quiet">Quiet</string>
+    <string name="switch_saving">Energy saving</string>
+    <string name="switch_xfan">Dry/X-Fan</string>
+    <string name="switch_sleep">Sleep</string>
+    <string name="switch_light">Light</string>
+    <string name="device_help_title">Help:</string>
+    <string name="device_help_air">Air</string>
+    <string name="device_help_health">Health</string>
+    <string name="device_help_dry">Dry</string>
+    <string name="device_help_sleep">Sleep</string>
+    <string name="device_help_quiet">Quiet</string>
+    <string name="device_help_turbo">Turbo</string>
+    <string name="device_help_saving">Energy saving</string>
+    <string name="device_help_light">Light</string>
+    <string name="device_temp_unit_celsius">°C</string>
+    <string name="device_scan_start_notification">Scanning devices on local network...</string>
+    <string name="device_scan_running_notification">Scan is already running. Please wait.</string>
+    <string name="device_fan_speed_auto">Auto</string>
+    <string name="device_fan_speed_max">Max</string>
+    <string-array name="device_mode_names">
+        <item>Automatic</item>
+        <item>Cool</item>
+        <item>Dry</item>
+        <item>Fan</item>
+        <item>Heat</item>
+    </string-array>
+</resources>
