@@ -54,12 +54,12 @@ import java.util.List;
  */
 public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDeviceItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DeviceItem> mValues;
-    private final DeviceItemFragment.OnListFragmentInteractionListener mListener;
+    private final List<DeviceItem> values;
+    private final DeviceItemFragment.OnListFragmentInteractionListener listener;
 
     public MyDeviceItemRecyclerViewAdapter(List<DeviceItem> items, DeviceItemFragment.OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+        values = items;
+        this.listener = listener;
     }
 
     @Override
@@ -71,11 +71,11 @@ public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDevi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mNameView.setText(holder.mItem.mName);
-        holder.mTemperatureView.setText(String.format("%d °C", holder.mItem.mTemperature));
+        holder.mItem = values.get(position);
+        holder.mNameView.setText(holder.mItem.name);
+        holder.mTemperatureView.setText(String.format("%d °C", holder.mItem.temperature));
 
-        switch (holder.mItem.mMode)
+        switch (holder.mItem.mode)
         {
             case AUTO:
                 holder.mModeView.setText(R.string.mode_auto);
@@ -98,7 +98,7 @@ public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDevi
                 break;
         }
 
-        switch (holder.mItem.mRoomType)
+        switch (holder.mItem.roomType)
         {
             case BEDROOM:
                 holder.mIconView.setImageResource(R.mipmap.ic_bedroom);
@@ -132,10 +132,10 @@ public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDevi
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
+                if (null != listener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    listener.onListFragmentInteraction(holder.mItem);
                 }
             }
         });
@@ -143,7 +143,7 @@ public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDevi
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return values.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

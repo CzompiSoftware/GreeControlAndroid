@@ -336,10 +336,10 @@ class DeviceImpl implements Device {
                 "mDeviceId='" + mDeviceId + '\'' +
                 ", mDeviceManager=" + mDeviceManager +
                 ", mLogTag='" + mLogTag + '\'' +
-                ", mName='" + mName + '\'' +
-                ", mMode=" + mMode +
+                ", name='" + mName + '\'' +
+                ", mode=" + mMode +
                 ", mFanSpeed=" + mFanSpeed +
-                ", mTemperature=" + mTemperature +
+                ", temperature=" + mTemperature +
                 ", mTemperatureUnit=" + mTemperatureUnit +
                 ", mPoweredOn=" + mPoweredOn +
                 ", mLightEnabled=" + mLightEnabled +

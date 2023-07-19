@@ -46,17 +46,17 @@ public class DeviceManager {
     private final String LOG_TAG = "DeviceManager";
     private final int DATAGRAM_PORT = 7000;
 
-    private static DeviceManager sInstance = null;
+    private static DeviceManager instance = null;
 
-    private final HashMap<String, DeviceImpl> mDevices = new HashMap<>();
-    private final DeviceKeyChain mKeyChain = new DeviceKeyChain();
-    private final ArrayList<DeviceManagerEventListener> mEventListeners = new ArrayList<>();
+    private final HashMap<String, DeviceImpl> devices = new HashMap<>();
+    private final DeviceKeyChain keyChain = new DeviceKeyChain();
+    private final ArrayList<DeviceManagerEventListener> eventListeners = new ArrayList<>();
 
     public static DeviceManager getInstance() {
-        if (sInstance == null)
-            sInstance = new DeviceManager();
+        if (instance == null)
+            instance = new DeviceManager();
 
-        return sInstance;
+        return instance;
     }
 
     protected DeviceManager() {
@@ -64,23 +64,23 @@ public class DeviceManager {
     }
 
     public Device[] getDevices() {
-        return mDevices.values().toArray(new Device[0]);
+        return devices.values().toArray(new Device[0]);
     }
 
     public Device getDevice(String deviceId) {
-        if (mDevices.containsKey(deviceId))
-            return mDevices.get(deviceId);
+        if (devices.containsKey(deviceId))
+            return devices.get(deviceId);
 
         return null;
     }
 
     public void registerEventListener(DeviceManagerEventListener listener) {
-        if (!mEventListeners.contains(listener))
-            mEventListeners.add(listener);
+        if (!eventListeners.contains(listener))
+            eventListeners.add(listener);
     }
 
     public void unregisterEventListener(DeviceManagerEventListener listener) {
-        mEventListeners.remove(listener);
+        eventListeners.remove(listener);
     }
 
     public void setParameter(Device device, String name, int value) {
@@ -104,7 +104,7 @@ public class DeviceManager {
 
         packet.pack = pack;
 
-        final AsyncCommunicator comm = new AsyncCommunicator(mKeyChain);
+        final AsyncCommunicator comm = new AsyncCommunicator(keyChain);
         comm.setCommunicationFinishedListener(new AsyncCommunicationFinishedListener() {
             @Override
             public void onFinished() {
@@ -112,8 +112,8 @@ public class DeviceManager {
                     final Packet[] responses = comm.get();
 
                     for (Packet response : responses) {
-                        if (mDevices.containsKey(response.cid)) {
-                            mDevices.get(response.cid).updateWithResultPack((ResultPack) response.pack);
+                        if (devices.containsKey(response.cid)) {
+                            devices.get(response.cid).updateWithResultPack((ResultPack) response.pack);
                         }
                     }
 
@@ -150,12 +150,12 @@ public class DeviceManager {
     }
 
     public void updateDevices() {
-        if (mDevices.isEmpty()) {
+        if (devices.isEmpty()) {
             Log.i(LOG_TAG, "No devices to update");
             return;
         }
 
-        Log.i(LOG_TAG, String.format("Updating %d device(s)", mDevices.size()));
+        Log.i(LOG_TAG, String.format("Updating %d device(s)", devices.size()));
 
         ArrayList<AppPacket> packets = new ArrayList<>();
 
@@ -164,7 +164,7 @@ public class DeviceManager {
             keys.add(p.toString());
         }
 
-        for (DeviceImpl device : mDevices.values()) {
+        for (DeviceImpl device : devices.values()) {
             AppPacket packet = new AppPacket();
             packet.tcid = device.getId();
             packet.i = 0;
@@ -177,7 +177,7 @@ public class DeviceManager {
             packets.add(packet);
         }
 
-        final AsyncCommunicator comm = new AsyncCommunicator(mKeyChain);
+        final AsyncCommunicator comm = new AsyncCommunicator(keyChain);
         comm.setCommunicationFinishedListener(new AsyncCommunicationFinishedListener() {
             @Override
             public void onFinished() {
@@ -185,8 +185,8 @@ public class DeviceManager {
                     Packet[] responses = comm.get();
 
                     for (Packet response : responses) {
-                        if (mDevices.containsKey(response.cid)) {
-                            mDevices.get(response.cid).updateWithDatPack((DatPack) response.pack);
+                        if (devices.containsKey(response.cid)) {
+                            devices.get(response.cid).updateWithDatPack((DatPack) response.pack);
                         }
                     }
 
@@ -213,15 +213,15 @@ public class DeviceManager {
 
             DeviceImpl device;
 
-            if (!mDevices.containsKey(response.cid)) {
+            if (!devices.containsKey(response.cid)) {
                 device = new DeviceImpl(devicePack.mac, this);
-                mDevices.put(devicePack.mac, device);
+                devices.put(devicePack.mac, device);
             } else {
-                device = mDevices.get(response.cid);
+                device = devices.get(response.cid);
             }
             device.updateWithDevicePack(devicePack);
 
-            if (!mKeyChain.containsKey(response.cid)) {
+            if (!keyChain.containsKey(response.cid)) {
                 Log.i(LOG_TAG, "Binding device: " + devicePack.name);
 
                 AppPacket request = new AppPacket();
@@ -234,7 +234,7 @@ public class DeviceManager {
             }
         }
 
-        final AsyncCommunicator comm = new AsyncCommunicator(mKeyChain);
+        final AsyncCommunicator comm = new AsyncCommunicator(keyChain);
         comm.setCommunicationFinishedListener(new AsyncCommunicationFinishedListener() {
             @Override
             public void onFinished() {
@@ -257,7 +257,7 @@ public class DeviceManager {
             BindOkPack pack = (BindOkPack) response.pack;
 
             Log.i(LOG_TAG, "Storing key for device: " + pack.mac);
-            mKeyChain.addKey(pack.mac, pack.key);
+            keyChain.addKey(pack.mac, pack.key);
         }
 
         sendEvent(DeviceManagerEventListener.Event.DEVICE_LIST_UPDATED);
@@ -265,7 +265,7 @@ public class DeviceManager {
     }
 
     private void sendEvent(DeviceManagerEventListener.Event event) {
-        for (DeviceManagerEventListener listener : mEventListeners)
+        for (DeviceManagerEventListener listener : eventListeners)
             listener.onEvent(event);
     }
 }

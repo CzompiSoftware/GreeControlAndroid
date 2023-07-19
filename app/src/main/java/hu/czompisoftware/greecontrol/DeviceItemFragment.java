@@ -66,11 +66,11 @@ public class DeviceItemFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
-    private DeviceManagerEventListener mDeviceManagerEventListener;
+    private int columnCount = 1;
+    private OnListFragmentInteractionListener listener;
+    private DeviceManagerEventListener deviceManagerEventListener;
 
-    private View mView;
+    private View view;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -94,7 +94,7 @@ public class DeviceItemFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            columnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
 
@@ -105,21 +105,21 @@ public class DeviceItemFragment extends Fragment {
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            mView = view;
+            this.view = view;
 
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
 
-            if (mColumnCount <= 1) {
+            if (columnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(context, columnCount));
             }
 
             DeviceManager dm = DeviceManager.getInstance();
-            dm.unregisterEventListener(mDeviceManagerEventListener);
+            dm.unregisterEventListener(deviceManagerEventListener);
 
-            mDeviceManagerEventListener = new DeviceManagerEventListener() {
+            deviceManagerEventListener = new DeviceManagerEventListener() {
                 @Override
                 public void onEvent(Event event) {
                 if (event == Event.DEVICE_LIST_UPDATED || event == Event.DEVICE_STATUS_UPDATED)
@@ -127,7 +127,7 @@ public class DeviceItemFragment extends Fragment {
                 }
             };
 
-            dm.registerEventListener(mDeviceManagerEventListener);
+            dm.registerEventListener(deviceManagerEventListener);
 
             updateDeviceList();
 
@@ -143,7 +143,7 @@ public class DeviceItemFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+            listener = (OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -153,9 +153,9 @@ public class DeviceItemFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        listener = null;
 
-        DeviceManager.getInstance().unregisterEventListener(mDeviceManagerEventListener);
+        DeviceManager.getInstance().unregisterEventListener(deviceManagerEventListener);
     }
 
     /**
@@ -174,7 +174,7 @@ public class DeviceItemFragment extends Fragment {
     }
 
     private void updateDeviceList() {
-        if (mView == null || !(mView instanceof RecyclerView))
+        if (view == null || !(view instanceof RecyclerView))
             return;
 
         final List<DeviceItem> items = new ArrayList<>();
@@ -183,8 +183,8 @@ public class DeviceItemFragment extends Fragment {
             items.add(new DeviceItem(d));
         }
 
-        RecyclerView recyclerView = (RecyclerView) mView;
+        RecyclerView recyclerView = (RecyclerView) view;
 
-        recyclerView.setAdapter(new MyDeviceItemRecyclerViewAdapter(items, mListener));
+        recyclerView.setAdapter(new MyDeviceItemRecyclerViewAdapter(items, listener));
     }
 }

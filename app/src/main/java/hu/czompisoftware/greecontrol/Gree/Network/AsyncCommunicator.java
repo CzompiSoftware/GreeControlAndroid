@@ -41,20 +41,20 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
     private final int DATAGRAM_PORT = 7000;
     private final int TIMEOUT_MS = 500;
 
-    private AsyncCommunicationFinishedListener mCommunicationFinishedListener;
-    private DatagramSocket mSocket;
-    private final DeviceKeyChain mKeyChain;
+    private AsyncCommunicationFinishedListener communicationFinishedListener;
+    private DatagramSocket socket;
+    private final DeviceKeyChain keyChain;
 
     public void setCommunicationFinishedListener(AsyncCommunicationFinishedListener listener) {
-        mCommunicationFinishedListener = listener;
+        communicationFinishedListener = listener;
     }
 
     public AsyncCommunicator(DeviceKeyChain deviceKeyChain) {
-        mKeyChain = deviceKeyChain;
+        keyChain = deviceKeyChain;
     }
 
     public AsyncCommunicator() {
-        mKeyChain = null;
+        keyChain = null;
     }
 
     @Override
@@ -85,12 +85,12 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
     protected void onPostExecute(Packet[] responses) {
         super.onPostExecute(responses);
 
-        if (mCommunicationFinishedListener != null)
-            mCommunicationFinishedListener.onFinished();
+        if (communicationFinishedListener != null)
+            communicationFinishedListener.onFinished();
     }
 
     private void broadcastPacket(Packet packet) throws IOException {
-        String data = Utils.serializePacket(packet, mKeyChain);
+        String data = Utils.serializePacket(packet, keyChain);
 
         Log.d(LOG_TAG, "Broadcasting: " + data);
 
@@ -98,11 +98,11 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
                 data.getBytes(), data.length(),
                 InetAddress.getByName("255.255.255.255"), DATAGRAM_PORT);
 
-        mSocket.send(datagramPacket);
+        socket.send(datagramPacket);
     }
 
     private Packet[] receivePackets(int timeout) throws IOException {
-        mSocket.setSoTimeout(timeout);
+        socket.setSoTimeout(timeout);
 
         ArrayList<Packet> responses = new ArrayList<>();
         ArrayList<DatagramPacket> datagramPackets = new ArrayList<>();
@@ -112,7 +112,7 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
                 byte[] buffer = new byte[65536];
                 DatagramPacket datagramPacket = new DatagramPacket(buffer, 65536);
 
-                mSocket.receive(datagramPacket);
+                socket.receive(datagramPacket);
 
                 datagramPackets.add(datagramPacket);
             }
@@ -126,7 +126,7 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
 
             Log.d(LOG_TAG, String.format("Received response from %s: %s", address.getHostAddress(), data));
 
-            Packet response = Utils.deserializePacket(data, mKeyChain);
+            Packet response = Utils.deserializePacket(data, keyChain);
 
             // Filter out packets sent by us
             if (response.cid != null && response.cid != AppPacket.CID)
@@ -138,7 +138,7 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
 
     private boolean createSocket() {
         try {
-            mSocket = new DatagramSocket(new InetSocketAddress(DATAGRAM_PORT));
+            socket = new DatagramSocket(new InetSocketAddress(DATAGRAM_PORT));
         } catch (SocketException e) {
             Log.e(LOG_TAG, "Failed to create socket. Error: " + e.getMessage());
             return false;
@@ -150,7 +150,7 @@ public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
     private void closeSocket() {
         Log.i(LOG_TAG, "Closing socket");
 
-        mSocket.close();
-        mSocket = null;
+        socket.close();
+        socket = null;
     }
 }

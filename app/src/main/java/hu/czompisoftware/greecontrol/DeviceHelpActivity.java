@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 
 public class DeviceHelpActivity extends AppCompatActivity {
-    private Feature mFeature;
+    private Feature feature;
 
     public enum Feature {
         UNKNOWN,
@@ -43,7 +43,7 @@ public class DeviceHelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_help);
 
-        mFeature = (Feature) getIntent().getSerializableExtra(DeviceActivity.EXTRA_FEATURE_HELP);
+        feature = (Feature) getIntent().getSerializableExtra(DeviceActivity.EXTRA_FEATURE_HELP);
 
         updateTitle();
     }
@@ -53,7 +53,7 @@ public class DeviceHelpActivity extends AppCompatActivity {
         sb.append(getString(R.string.device_help_title));
         sb.append(" ");
 
-        switch (mFeature)
+        switch (feature)
         {
             case AIR:
                 sb.append(getString(R.string.device_help_air));

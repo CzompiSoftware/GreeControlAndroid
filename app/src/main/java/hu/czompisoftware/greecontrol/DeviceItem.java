@@ -26,11 +26,11 @@ import hu.czompisoftware.greecontrol.Gree.Device.Device;
 
 public class DeviceItem implements Serializable {
 
-    public String mId = "ID";
-    public String mName = "Name";
-    public Device.Mode mMode = Device.Mode.AUTO;
-    public int mTemperature = 0;
-    public RoomType mRoomType = RoomType.NONE;
+    public String id = "ID";
+    public String name = "Name";
+    public Device.Mode mode = Device.Mode.AUTO;
+    public int temperature = 0;
+    public RoomType roomType = RoomType.NONE;
 
     public enum RoomType {
         NONE,
@@ -49,9 +49,9 @@ public class DeviceItem implements Serializable {
     }
 
     public void updateWithDevice(Device device) {
-        mId = device.getId();
-        mName = device.getName();
-        mMode = device.getMode();
-        mTemperature = device.getTemperature();
+        id = device.getId();
+        name = device.getName();
+        mode = device.getMode();
+        temperature = device.getTemperature();
     }
 }
