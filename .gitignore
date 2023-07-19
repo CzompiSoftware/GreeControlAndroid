@@ -213,3 +213,6 @@ Thumbs.db
 *.jks
 .idea/**
 !.idea/copyright/GPLv3.xml
+
+**/debug/
+**/release/
