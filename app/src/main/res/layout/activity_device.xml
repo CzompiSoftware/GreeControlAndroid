@@ -22,15 +22,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="hu.czompisoftware.greecontrol.DeviceActivity"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="81dp">
+        tools:context="hu.czompisoftware.greecontrol.DeviceActivity">
 
     <ImageButton
             android:id="@+id/coolModeButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:background="@android:color/transparent"
             android:onClick="onCoolModeButtonClicked"
@@ -39,8 +38,7 @@
             app:layout_constraintRight_toLeftOf="@+id/dryModeButton"
             app:layout_constraintTop_toTopOf="@+id/dryModeButton"
             app:srcCompat="@drawable/ic_mode_cool"
-            app:tint="?attr/colorPrimaryTextVariant"
-            android:layout_marginEnd="0dp"/>
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/autoModeButton"
@@ -50,12 +48,12 @@
             android:background="@android:color/transparent"
             android:onClick="onAutoModeButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/coolModeButton"
             app:layout_constraintTop_toTopOf="@+id/dryModeButton"
-            app:srcCompat="@drawable/ic_mode_auto" />
+            app:srcCompat="@drawable/ic_mode_auto"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/dryModeButton"
@@ -65,11 +63,11 @@
             android:background="@android:color/transparent"
             android:onClick="onDryModeButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintLeft_toRightOf="@+id/coolModeButton"
             app:layout_constraintRight_toLeftOf="@+id/fanModeButton"
             app:layout_constraintTop_toBottomOf="@+id/view2"
-            app:srcCompat="@drawable/ic_mode_dry" />
+            app:srcCompat="@drawable/ic_mode_dry"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/heatModeButton"
@@ -79,11 +77,11 @@
             android:background="@android:color/transparent"
             android:onClick="onHeatModeButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintLeft_toRightOf="@+id/fanModeButton"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/dryModeButton"
-            app:srcCompat="@drawable/ic_mode_heat" />
+            app:srcCompat="@drawable/ic_mode_heat"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/fanModeButton"
@@ -93,42 +91,47 @@
             android:background="@android:color/transparent"
             android:onClick="onFanModeButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintLeft_toRightOf="@+id/dryModeButton"
             app:layout_constraintRight_toLeftOf="@+id/heatModeButton"
             app:layout_constraintTop_toTopOf="@+id/dryModeButton"
-            app:srcCompat="@drawable/ic_mode_fan" />
+            app:srcCompat="@drawable/ic_mode_fan"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/minusButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
             android:onClick="onMinusButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintBottom_toTopOf="@+id/view3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/temperatureUnitTextView"
             app:layout_constraintTop_toBottomOf="@+id/plusButton"
-            app:srcCompat="@drawable/ic_button_minus" />
+            app:srcCompat="@drawable/ic_button_minus"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/plusButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@android:color/transparent"
             android:onClick="onPlusButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintBottom_toTopOf="@+id/minusButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/temperatureUnitTextView"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_button_plus" />
+            app:srcCompat="@drawable/ic_button_plus"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <ImageButton
             android:id="@+id/powerButton"
@@ -136,16 +139,17 @@
             android:layout_height="48dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="64dp"
             android:background="@android:color/transparent"
             android:onClick="onPowerButtonClicked"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorPrimaryTextVariant"
             app:layout_constraintBottom_toTopOf="@+id/view3"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/temperatureTextView"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_button_power" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_button_power"
+            app:tint="?attr/colorPrimaryTextVariant" />
 
     <TextView
             android:id="@+id/temperatureTextView"
@@ -153,9 +157,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="48dp"
             android:layout_marginRight="32dp"
             android:fontFamily="@font/thin"
+            android:scaleType="fitCenter"
             android:text="00"
             android:textColor="?attr/colorPrimaryTextVariant"
             android:textSize="130sp"
@@ -167,10 +172,11 @@
             tools:typeface="normal" />
 
     <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:id="@+id/temperatureUnitTextView"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/thin"
+            android:scaleType="fitCenter"
             android:text="@string/device_temp_unit_celsius"
             android:textSize="36sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/temperatureTextView"
@@ -582,9 +588,10 @@
             android:thumb="@drawable/ic_mode_fan"
             android:thumbTint="?attr/colorSecondaryTextVariant"
             app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/view3"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
+
     <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -608,5 +615,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/fanSpeedSeekBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/fanSpeedSeekBar" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="871dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
