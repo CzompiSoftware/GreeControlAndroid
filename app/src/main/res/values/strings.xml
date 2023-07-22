@@ -47,6 +47,10 @@
     <string name="device_scan_running_notification">Scan is already running. Please wait.</string>
     <string name="device_fan_speed_auto">Auto</string>
     <string name="device_fan_speed_max">Max</string>
+    <string name="device_wifi_ssid">Wi-Fi name (2.4GHz only)</string>
+    <string name="device_wifi_psw">Wi-Fi password</string>
+    <string name="device_wifi_settings">Wi-Fi settings</string>
+    <string name="device_settings">Device settings</string>
     <string-array name="device_mode_names">
         <item>Automatic</item>
         <item>Cool</item>
@@ -54,4 +58,5 @@
         <item>Fan</item>
         <item>Heat</item>
     </string-array>
+    <string name="ok">Ok</string>
 </resources>

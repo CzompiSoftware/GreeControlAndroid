@@ -46,6 +46,10 @@
     <string name="device_scan_running_notification">Kérem várjon, a keresés még folyamatban van.</string>
     <string name="device_fan_speed_auto">Auto</string>
     <string name="device_fan_speed_max">Max</string>
+    <string name="device_wifi_ssid">Wi-Fi hálózat neve (csak 2.4GHz-s)</string>
+    <string name="device_wifi_psw">Wi-Fi jelszó</string>
+    <string name="device_wifi_settings">Wi-Fi beállítások</string>
+    <string name="device_settings">Eszköz beállítások</string>
     <string-array name="device_mode_names">
         <item>Automatikus</item>
         <item>Hűtés</item>
@@ -53,4 +57,5 @@
         <item>Ventillátor</item>
         <item>Fűtés</item>
     </string-array>
+    <string name="ok">Ok</string>
 </resources>

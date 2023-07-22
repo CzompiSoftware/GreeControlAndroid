@@ -13,6 +13,7 @@ import eu.czsoft.greesdk.network.DeviceKeyChain;
 import eu.czsoft.greesdk.packets.AppPacket;
 import eu.czsoft.greesdk.packets.Packet;
 import eu.czsoft.greesdk.packets.ScanPacket;
+import eu.czsoft.greesdk.packets.WifiSettingsPacket;
 import eu.czsoft.greesdk.packs.BindOkPack;
 import eu.czsoft.greesdk.packs.BindPack;
 import eu.czsoft.greesdk.packs.CommandPack;
@@ -82,6 +83,34 @@ public class DeviceManager {
         pack.mac = packet.tcid;
 
         packet.pack = pack;
+
+        final AsyncCommunicator comm = new AsyncCommunicator(keyChain);
+        comm.setCommunicationFinishedListener(new AsyncCommunicationFinishedListener() {
+            @Override
+            public void onFinished() {
+                try {
+                    final Packet[] responses = comm.get();
+
+                    for (Packet response : responses) {
+                        if (devices.containsKey(response.cid)) {
+                            devices.get(response.cid).updateWithResultPack((ResultPack) response.pack);
+                        }
+                    }
+
+                    sendEvent(DeviceManagerEventListener.Event.DEVICE_STATUS_UPDATED);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Failed to get response of command. Error: " + e.getMessage());
+                }
+            }
+        });
+        comm.execute(new Packet[] { packet });
+    }
+
+    public void setWifi(String ssid, String password){
+
+        WifiSettingsPacket packet = new WifiSettingsPacket();
+        packet.password = password;
+        packet.ssid = ssid;
 
         final AsyncCommunicator comm = new AsyncCommunicator(keyChain);
         comm.setCommunicationFinishedListener(new AsyncCommunicationFinishedListener() {

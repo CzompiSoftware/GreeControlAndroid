@@ -242,6 +242,11 @@ class DeviceImpl implements Device {
     }
 
     @Override
+    public void setWifiSsidPassword(String ssid, String psw) {
+        mDeviceManager.setWifi(ssid, psw);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

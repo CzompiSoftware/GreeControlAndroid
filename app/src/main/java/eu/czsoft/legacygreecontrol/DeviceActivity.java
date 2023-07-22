@@ -1,17 +1,25 @@
 package eu.czsoft.legacygreecontrol;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import com.google.android.material.color.MaterialColors;
+import com.google.android.material.textfield.TextInputEditText;
 
 import eu.czsoft.greesdk.device.Device;
 import eu.czsoft.greesdk.device.DeviceManager;
@@ -213,6 +221,22 @@ public class DeviceActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.wifi_settings){
+            final View usernamePasswordView = LayoutInflater.from(this).inflate(R.layout.set_wifi_details, null);
+            new AlertDialog.Builder(this).setView(usernamePasswordView)
+                    .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
+                        TextInputEditText name = usernamePasswordView.findViewById(R.id.name);
+                        TextInputEditText password = usernamePasswordView.findViewById(R.id.password);
+                        Log.d("Wi-Fi Settings",name.getText().toString() + " ***");
+                        device.setWifiSsidPassword(name.getText().toString(), password.getText().toString());
+                    }).create().show();
+
+        }
+        return true;
     }
 
     private void setupFanSpeedSeekBarChangeListener() {

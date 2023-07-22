@@ -86,4 +86,5 @@ public interface Device {
     int getParameter(String name);
     void setParameter(String name, int value);
 
+    void setWifiSsidPassword(String ssid, String psw);
 }
