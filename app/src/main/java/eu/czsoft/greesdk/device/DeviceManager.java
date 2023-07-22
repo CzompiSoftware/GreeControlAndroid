@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol.Gree.Device;
+package eu.czsoft.greesdk.Device;
 
 import android.util.Log;
 
@@ -7,40 +7,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import eu.czsoft.legacygreecontrol.Gree.Network.AsyncCommunicationFinishedListener;
-import eu.czsoft.legacygreecontrol.Gree.Network.AsyncCommunicator;
-import eu.czsoft.legacygreecontrol.Gree.Network.DeviceKeyChain;
-import eu.czsoft.legacygreecontrol.Gree.Packets.AppPacket;
-import eu.czsoft.legacygreecontrol.Gree.Packets.Packet;
-import eu.czsoft.legacygreecontrol.Gree.Packets.ScanPacket;
-import eu.czsoft.legacygreecontrol.Gree.Packs.BindOkPack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.BindPack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.CommandPack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.DatPack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.DevicePack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.ResultPack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.StatusPack;
-
-/*
- * This file is part of GreeRemoteAndroid.
- *
- * GreeRemoteAndroid is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * GreeRemoteAndroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * Created by tomikaa87 <https://github.com/tomikaa87> on 2017-11-27.
- */
+import eu.czsoft.greesdk.network.AsyncCommunicationFinishedListener;
+import eu.czsoft.greesdk.network.AsyncCommunicator;
+import eu.czsoft.greesdk.network.DeviceKeyChain;
+import eu.czsoft.greesdk.packets.AppPacket;
+import eu.czsoft.greesdk.packets.Packet;
+import eu.czsoft.greesdk.packets.ScanPacket;
+import eu.czsoft.greesdk.packs.BindOkPack;
+import eu.czsoft.greesdk.packs.BindPack;
+import eu.czsoft.greesdk.packs.CommandPack;
+import eu.czsoft.greesdk.packs.DatPack;
+import eu.czsoft.greesdk.packs.DevicePack;
+import eu.czsoft.greesdk.packs.ResultPack;
+import eu.czsoft.greesdk.packs.StatusPack;
 
 public class DeviceManager {
     private final String LOG_TAG = "DeviceManager";

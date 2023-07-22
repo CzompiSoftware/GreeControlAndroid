@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol.Gree;
+package eu.czsoft.greesdk;
 
 import android.util.Log;
 
@@ -8,32 +8,11 @@ import com.google.gson.GsonBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
-import eu.czsoft.legacygreecontrol.Gree.Deserializers.PackDeserializer;
-import eu.czsoft.legacygreecontrol.Gree.Network.DeviceKeyChain;
-import eu.czsoft.legacygreecontrol.Gree.Packets.Packet;
-import eu.czsoft.legacygreecontrol.Gree.Packs.DatPack;
-import eu.czsoft.legacygreecontrol.Gree.Packs.Pack;
-
-/*
- * This file is part of GreeRemoteAndroid.
- *
- * GreeRemoteAndroid is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * GreeRemoteAndroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * Created by tomikaa87 <https://github.com/tomikaa87> on 2017-11-26.
- */
+import eu.czsoft.greesdk.Deserializers.PackDeserializer;
+import eu.czsoft.greesdk.Network.DeviceKeyChain;
+import eu.czsoft.greesdk.Packets.Packet;
+import eu.czsoft.greesdk.Packs.DatPack;
+import eu.czsoft.greesdk.Packs.Pack;
 
 public class Utils {
 
