@@ -16,7 +16,6 @@
   -->
 
 <resources>
-    <string name="app_name">Gree Control</string>
     <string name="action_settings">Beállítások</string>
     <string name="mode_auto">Automatikus</string>
     <string name="mode_cool">Hűtés</string>
