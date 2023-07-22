@@ -1,37 +1,4 @@
-<!--
-  ~ This file is part of GreeRemoteAndroid.
-  ~
-  ~ GreeRemoteAndroid is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ GreeRemoteAndroid is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
-  -->
-
-<!--
-  ~ This file is part of GreeRemoteAndroid.
-  ~
-  ~ GreeRemoteAndroid is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ GreeRemoteAndroid is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <vector android:height="24dp" android:viewportHeight="512.0"
     android:viewportWidth="512.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#FF000000" android:pathData="M256,111.3c-79.8,0 -144.7,64.9 -144.7,144.7S176.2,400.7 256,400.7S400.7,335.8 400.7,256S335.8,111.3 256,111.3zM256,378.4c-67.5,0 -122.4,-54.9 -122.4,-122.4S188.5,133.6 256,133.6S378.4,188.5 378.4,256S323.5,378.4 256,378.4z"/>
