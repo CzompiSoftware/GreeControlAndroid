@@ -1,4 +1,4 @@
-package eu.czsoft.greesdk.Device;
+package eu.czsoft.greesdk.device;
 
 import android.util.Log;
 

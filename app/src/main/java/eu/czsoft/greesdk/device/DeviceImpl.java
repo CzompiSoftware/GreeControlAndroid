@@ -7,7 +7,7 @@ import java.util.Map;
 import eu.czsoft.greesdk.packs.DatPack;
 import eu.czsoft.greesdk.packs.DevicePack;
 import eu.czsoft.greesdk.packs.ResultPack;
-import eu.czsoft.greesdk.utils;
+import eu.czsoft.greesdk.Utils;
 
 class DeviceImpl implements Device {
     private final String mDeviceId;

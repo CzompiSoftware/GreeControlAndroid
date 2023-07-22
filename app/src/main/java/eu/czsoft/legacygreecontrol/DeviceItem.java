@@ -1,7 +1,8 @@
 package eu.czsoft.legacygreecontrol;
 
 import java.io.Serializable;
-import eu.czsoft.legacygreecontrol.Gree.Device.Device;
+
+import eu.czsoft.greesdk.device.Device;
 
 public class DeviceItem implements Serializable {
 

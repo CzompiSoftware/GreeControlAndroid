@@ -19,10 +19,10 @@ plugins {
 }
 
 android {
-    namespace 'hu.czompisoftware.greecontrol'
+    namespace 'eu.czsoft.legacygreecontrol'
     compileSdk 33
     defaultConfig {
-        applicationId "hu.czompisoftware.greecontrol"
+        applicationId "eu.czsoft.legacygreecontrol"
         minSdk 16
         targetSdk 33
         versionCode 2

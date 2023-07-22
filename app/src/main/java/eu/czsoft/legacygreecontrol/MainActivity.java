@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import eu.czsoft.legacygreecontrol.Gree.Device.DeviceManager;
+
+import eu.czsoft.greesdk.device.DeviceManager;
 
 public class MainActivity extends AppCompatActivity
     implements DeviceItemFragment.OnListFragmentInteractionListener {

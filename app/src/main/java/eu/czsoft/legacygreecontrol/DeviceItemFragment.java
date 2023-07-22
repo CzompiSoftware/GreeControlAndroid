@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import eu.czsoft.legacygreecontrol.Gree.Device.Device;
-import eu.czsoft.legacygreecontrol.Gree.Device.DeviceManager;
-import eu.czsoft.legacygreecontrol.Gree.Device.DeviceManagerEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import eu.czsoft.greesdk.device.Device;
+import eu.czsoft.greesdk.device.DeviceManager;
+import eu.czsoft.greesdk.device.DeviceManagerEventListener;
 
 /**
  * A fragment representing a list of Items.

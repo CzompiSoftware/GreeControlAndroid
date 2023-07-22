@@ -12,9 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import com.google.android.material.color.MaterialColors;
-import eu.czsoft.legacygreecontrol.Gree.Device.Device;
-import eu.czsoft.legacygreecontrol.Gree.Device.DeviceManager;
-import eu.czsoft.legacygreecontrol.Gree.Device.DeviceManagerEventListener;
+
+import eu.czsoft.greesdk.device.Device;
+import eu.czsoft.greesdk.device.DeviceManager;
+import eu.czsoft.greesdk.device.DeviceManagerEventListener;
 
 public class DeviceActivity extends AppCompatActivity {
     private DeviceItem deviceItem;

@@ -8,11 +8,11 @@ import com.google.gson.GsonBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
-import eu.czsoft.greesdk.Deserializers.PackDeserializer;
-import eu.czsoft.greesdk.Network.DeviceKeyChain;
-import eu.czsoft.greesdk.Packets.Packet;
-import eu.czsoft.greesdk.Packs.DatPack;
-import eu.czsoft.greesdk.Packs.Pack;
+import eu.czsoft.greesdk.deserializers.PackDeserializer;
+import eu.czsoft.greesdk.network.DeviceKeyChain;
+import eu.czsoft.greesdk.packets.Packet;
+import eu.czsoft.greesdk.packs.DatPack;
+import eu.czsoft.greesdk.packs.Pack;
 
 public class Utils {
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import eu.czsoft.greesdk.packets.AppPacket;
 import eu.czsoft.greesdk.packets.Packet;
-import eu.czsoft.greesdk.utils;
+import eu.czsoft.greesdk.Utils;
 
 public class AsyncCommunicator extends AsyncTask<Packet[], Void, Packet[]> {
     private final String LOG_TAG = "AsyncCommunicator";
