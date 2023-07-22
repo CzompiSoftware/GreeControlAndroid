@@ -1,5 +1,6 @@
 package eu.czsoft.legacygreecontrol;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,14 +32,14 @@ public class DeviceActivity extends AppCompatActivity {
     private Device device;
     private DeviceManagerEventListener deviceManagerEventListener;
 
-    public static String EXTRA_FEATURE_HELP = "eu.czsoft.greecontrol.FEATURE_HELP";
+    public static String EXTRA_FEATURE_HELP = "eu.czsoft.legacygreecontrol.FEATURE_HELP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
 
-        temperatureTextView = (TextView) findViewById(R.id.temperatureTextView);
+        temperatureTextView = findViewById(R.id.temperatureTextView);
 
         Intent intent = getIntent();
         deviceItem = (DeviceItem) intent.getSerializableExtra(MainActivity.EXTRA_DEVICE_ITEM);

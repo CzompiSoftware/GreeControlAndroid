@@ -16,7 +16,7 @@ import eu.czsoft.greesdk.device.DeviceManager;
 public class MainActivity extends AppCompatActivity
     implements DeviceItemFragment.OnListFragmentInteractionListener {
 
-    public static String EXTRA_DEVICE_ITEM = "eu.czsoft.greecontrol.DEVICEITEM";
+    public static String EXTRA_DEVICE_ITEM = "eu.czsoft.legacygreecontrol.DEVICEITEM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

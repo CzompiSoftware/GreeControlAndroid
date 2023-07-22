@@ -3,10 +3,10 @@ package eu.czsoft.greesdk.network;
 import java.util.HashMap;
 
 public class DeviceKeyChain {
-    private final HashMap<String, String> mKeys = new HashMap<>();
+    private final HashMap<String, String> keys = new HashMap<>();
 
     public void addKey(String deviceId, String key) {
-        mKeys.put(deviceId.toLowerCase(), key);
+        keys.put(deviceId.toLowerCase(), key);
     }
 
     public String getKey(String deviceId) {
@@ -15,16 +15,16 @@ public class DeviceKeyChain {
 
         String id = deviceId.toLowerCase();
 
-        if (!mKeys.containsKey(id))
+        if (!keys.containsKey(id))
             return null;
 
-        return mKeys.get(id);
+        return keys.get(id);
     }
 
     public boolean containsKey(String deviceId) {
         if (deviceId == null)
             return false;
         
-        return mKeys.containsKey(deviceId.toLowerCase());
+        return keys.containsKey(deviceId.toLowerCase());
     }
 }

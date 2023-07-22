@@ -10,23 +10,6 @@ import static org.junit.Assert.*;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-/*
- * This file is part of GreeRemoteAndroid.
- *
- * GreeRemoteAndroid is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * GreeRemoteAndroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with GreeRemoteAndroid. If not, see <http://www.gnu.org/licenses/>.
- */
-
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -39,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
 
-        assertEquals("eu.czsoft.greecontrol", appContext.getPackageName());
+        assertEquals("eu.czsoft.legacygreecontrol", appContext.getPackageName());
     }
 }

@@ -33,71 +33,71 @@ public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDevi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = values.get(position);
-        holder.mNameView.setText(holder.mItem.name);
-        holder.mTemperatureView.setText(String.format("%d °C", holder.mItem.temperature));
+        holder.item = values.get(position);
+        holder.nameView.setText(holder.item.name);
+        holder.temperatureView.setText(String.format("%d °C", holder.item.temperature));
 
-        switch (holder.mItem.mode)
+        switch (holder.item.mode)
         {
             case AUTO:
-                holder.mModeView.setText(R.string.mode_auto);
+                holder.modeView.setText(R.string.mode_auto);
                 break;
 
             case COOL:
-                holder.mModeView.setText(R.string.mode_cool);
+                holder.modeView.setText(R.string.mode_cool);
                 break;
 
             case DRY:
-                holder.mModeView.setText(R.string.mode_dry);
+                holder.modeView.setText(R.string.mode_dry);
                 break;
 
             case HEAT:
-                holder.mModeView.setText(R.string.mode_heat);
+                holder.modeView.setText(R.string.mode_heat);
                 break;
 
             case FAN:
-                holder.mModeView.setText(R.string.mode_fan);
+                holder.modeView.setText(R.string.mode_fan);
                 break;
         }
 
-        switch (holder.mItem.roomType)
+        switch (holder.item.roomType)
         {
             case BEDROOM:
-                holder.mIconView.setImageResource(R.mipmap.ic_bedroom);
+                holder.iconView.setImageResource(R.mipmap.ic_bedroom);
                 break;
 
             case LIVING_ROOM:
-                holder.mIconView.setImageResource(R.mipmap.ic_livingroom);
+                holder.iconView.setImageResource(R.mipmap.ic_livingroom);
                 break;
 
             case KITCHEN:
-                holder.mIconView.setImageResource(R.mipmap.ic_kitchen);
+                holder.iconView.setImageResource(R.mipmap.ic_kitchen);
                 break;
 
             case DINING_ROOM:
-                holder.mIconView.setImageResource(R.mipmap.ic_diningroom);
+                holder.iconView.setImageResource(R.mipmap.ic_diningroom);
                 break;
 
             case BATHROOM:
-                holder.mIconView.setImageResource(R.mipmap.ic_bathroom);
+                holder.iconView.setImageResource(R.mipmap.ic_bathroom);
                 break;
 
             case OFFICE:
-                holder.mIconView.setImageResource(R.mipmap.ic_office);
+                holder.iconView.setImageResource(R.mipmap.ic_office);
                 break;
 
             default:
-                holder.mIconView.setImageResource(R.mipmap.ic_air_conditioner);
+                holder.iconView.setImageResource(R.mipmap.ic_air_conditioner);
                 break;
         }
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != listener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    listener.onListFragmentInteraction(holder.mItem);
+                    listener.onListFragmentInteraction(holder.item);
                 }
             }
         });
@@ -109,25 +109,25 @@ public class MyDeviceItemRecyclerViewAdapter extends RecyclerView.Adapter<MyDevi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mNameView;
-        public final ImageView mIconView;
-        public final TextView mModeView;
-        public final TextView mTemperatureView;
-        public DeviceItem mItem;
+        public final View view;
+        public final TextView nameView;
+        public final ImageView iconView;
+        public final TextView modeView;
+        public final TextView temperatureView;
+        public DeviceItem item;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
-            mNameView = view.findViewById(R.id.nameTextView);
-            mIconView = view.findViewById(R.id.icon);
-            mModeView = view.findViewById(R.id.modeTextView);
-            mTemperatureView = view.findViewById(R.id.temperatureTextView);
+            this.view = view;
+            this.nameView = view.findViewById(R.id.nameTextView);
+            this.iconView = view.findViewById(R.id.icon);
+            this.modeView = view.findViewById(R.id.modeTextView);
+            this.temperatureView = view.findViewById(R.id.temperatureTextView);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mNameView.getText() + "'";
+            return super.toString() + " '" + nameView.getText() + "'";
         }
     }
 }

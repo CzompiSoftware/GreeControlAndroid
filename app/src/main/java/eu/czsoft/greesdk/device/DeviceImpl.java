@@ -10,9 +10,9 @@ import eu.czsoft.greesdk.packs.ResultPack;
 import eu.czsoft.greesdk.Utils;
 
 class DeviceImpl implements Device {
-    private final String mDeviceId;
-    private final DeviceManager mDeviceManager;
-    private final String mLogTag;
+    private final String deviceId;
+    private final DeviceManager deviceManager;
+    private final String logTag;
 
     public enum Parameter {
         POWER               ("Pow"),
@@ -35,40 +35,40 @@ class DeviceImpl implements Device {
         TEM_REC_MODE        ("TemRec")
         ;
 
-        private final String mParam;
+        private final String param;
 
         Parameter(final String param) {
-            mParam = param;
+            this.param = param;
         }
 
         @Override
         public String toString() {
-            return mParam;
+            return param;
         }
     }
 
-    private String mName = "";
-    private Mode mMode = Mode.AUTO;
-    private FanSpeed mFanSpeed = FanSpeed.AUTO;
-    private int mTemperature = 0;
-    private TemperatureUnit mTemperatureUnit = TemperatureUnit.CELSIUS;
-    private boolean mPoweredOn;
-    private boolean mLightEnabled;
-    private boolean mQuietModeEnabled;
-    private boolean mTurboModeEnabled;
-    private boolean mHealthModeEnabled;
-    private boolean mAirModeEnabled;
-    private boolean mXfanModeEnabled;
-    private boolean mSavingModeEnabled;
-    private boolean mSleepModeEnabled;
-    private VerticalSwingMode mVerticalSwingMode = VerticalSwingMode.DEFAULT;
+    private String name = "";
+    private Mode mode = Mode.AUTO;
+    private FanSpeed fanSpeed = FanSpeed.AUTO;
+    private int temperature = 0;
+    private TemperatureUnit temperatureUnit = TemperatureUnit.CELSIUS;
+    private boolean poweredOn;
+    private boolean lightEnabled;
+    private boolean quietModeEnabled;
+    private boolean turboModeEnabled;
+    private boolean healthModeEnabled;
+    private boolean airModeEnabled;
+    private boolean xFanModeEnabled;
+    private boolean savingModeEnabled;
+    private boolean sleepModeEnabled;
+    private VerticalSwingMode verticalSwingMode = VerticalSwingMode.DEFAULT;
 
     public DeviceImpl(String deviceId, DeviceManager deviceManager) {
-        mDeviceId = deviceId;
-        mDeviceManager = deviceManager;
-        mLogTag = String.format("DeviceImpl(%s)", deviceId);
+        this.deviceId = deviceId;
+        this.deviceManager = deviceManager;
+        this.logTag = String.format("DeviceImpl(%s)", deviceId);
 
-        Log.i(mLogTag, "Created");
+        Log.i(this.logTag, "Created");
     }
 
     public void updateWithDatPack(DatPack pack) {
@@ -80,18 +80,18 @@ class DeviceImpl implements Device {
     }
 
     public void updateWithDevicePack(DevicePack pack) {
-        Log.d(mLogTag, "Updating name: " + pack.name);
-        mName = pack.name;
+        Log.d(logTag, "Updating name: " + pack.name);
+        name = pack.name;
     }
 
     @Override
     public String getId() {
-        return mDeviceId;
+        return deviceId;
     }
 
     @Override
     public String getName() {
-        return mName;
+        return name;
     }
 
     @Override
@@ -100,7 +100,7 @@ class DeviceImpl implements Device {
 
     @Override
     public Mode getMode() {
-        return mMode;
+        return mode;
     }
 
     @Override
@@ -110,7 +110,7 @@ class DeviceImpl implements Device {
 
     @Override
     public FanSpeed getFanSpeed() {
-        return mFanSpeed;
+        return fanSpeed;
     }
 
     @Override
@@ -120,7 +120,7 @@ class DeviceImpl implements Device {
 
     @Override
     public int getTemperature() {
-        return mTemperature;
+        return temperature;
     }
 
     @Override
@@ -133,7 +133,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isPoweredOn() {
-        return mPoweredOn;
+        return poweredOn;
     }
 
     @Override
@@ -143,7 +143,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isLightEnabled() {
-        return mLightEnabled;
+        return lightEnabled;
     }
 
     @Override
@@ -153,7 +153,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isQuietModeEnabled() {
-        return mQuietModeEnabled;
+        return quietModeEnabled;
     }
 
     @Override
@@ -163,7 +163,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isTurboModeEnabled() {
-        return mTurboModeEnabled;
+        return turboModeEnabled;
     }
 
     @Override
@@ -173,7 +173,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isHealthModeEnabled() {
-        return mHealthModeEnabled;
+        return healthModeEnabled;
     }
 
     @Override
@@ -183,7 +183,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isAirModeEnabled() {
-        return mAirModeEnabled;
+        return airModeEnabled;
     }
 
     @Override
@@ -193,7 +193,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isXfanModeEnabled() {
-        return mXfanModeEnabled;
+        return xFanModeEnabled;
     }
 
     @Override
@@ -203,7 +203,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isSavingModeEnabled() {
-        return mSavingModeEnabled;
+        return savingModeEnabled;
     }
 
     @Override
@@ -213,7 +213,7 @@ class DeviceImpl implements Device {
 
     @Override
     public boolean isSleepModeEnabled() {
-        return mSleepModeEnabled;
+        return sleepModeEnabled;
     }
 
     @Override
@@ -223,7 +223,7 @@ class DeviceImpl implements Device {
 
     @Override
     public VerticalSwingMode getVerticalSwingMode() {
-        return mVerticalSwingMode;
+        return verticalSwingMode;
     }
 
     @Override
@@ -238,12 +238,12 @@ class DeviceImpl implements Device {
 
     @Override
     public void setParameter(String name, int value) {
-        mDeviceManager.setParameter(this, name, value);
+        deviceManager.setParameter(this, name, value);
     }
 
     @Override
     public void setWifiSsidPassword(String ssid, String psw) {
-        mDeviceManager.setWifi(ssid, psw);
+        deviceManager.setWifi(ssid, psw);
     }
 
     @Override
@@ -253,12 +253,12 @@ class DeviceImpl implements Device {
 
         DeviceImpl device = (DeviceImpl) o;
 
-        return mDeviceId.equals(device.mDeviceId);
+        return deviceId.equals(device.deviceId);
     }
 
     @Override
     public int hashCode() {
-        return mDeviceId.hashCode();
+        return deviceId.hashCode();
     }
 
     private void setParameter(Parameter parameter, int value) {
@@ -271,29 +271,29 @@ class DeviceImpl implements Device {
             names[i] = parameters[i].toString();
         }
 
-        mDeviceManager.setParameters(this, Utils.zip(names, values));
+        deviceManager.setParameters(this, Utils.zip(names, values));
     }
 
     private void updateParameters(Map<String, Integer> p) {
-        Log.d(mLogTag, "Updating parameters: " + p);
+        Log.d(logTag, "Updating parameters: " + p);
 
-        mMode = getEnumParameter(p, Parameter.MODE, Mode.values(), mMode);
-        mFanSpeed = getEnumParameter(p, Parameter.FAN_SPEED, FanSpeed.values(), mFanSpeed);
-        mTemperature = getOrdinalParameter(p, Parameter.TEMPERATURE, mTemperature);
-        mTemperatureUnit = getEnumParameter(p, Parameter.TEMPERATURE_UNIT, TemperatureUnit.values(), mTemperatureUnit);
-        mPoweredOn = getBooleanParameter(p, Parameter.POWER, mPoweredOn);
-        mLightEnabled = getBooleanParameter(p, Parameter.LIGHT, mLightEnabled);
-        mQuietModeEnabled = getBooleanParameter(p, Parameter.QUIET_MODE, mQuietModeEnabled);
-        mTurboModeEnabled = getBooleanParameter(p, Parameter.TURBO_MODE, mTurboModeEnabled);
-        mHealthModeEnabled = getBooleanParameter(p, Parameter.HEALTH_MODE, mHealthModeEnabled);
-        mAirModeEnabled = getBooleanParameter(p, Parameter.AIR_MODE, mAirModeEnabled);
-        mXfanModeEnabled = getBooleanParameter(p, Parameter.XFAN_MODE, mXfanModeEnabled);
-        mSavingModeEnabled = getBooleanParameter(p, Parameter.SAVING_MODE, mSavingModeEnabled);
-        mSleepModeEnabled = getBooleanParameter(p, Parameter.SLEEP_MODE, mSleepModeEnabled);
-        mVerticalSwingMode = getEnumParameter(p, Parameter.VERTICAL_SWING, VerticalSwingMode.values(), mVerticalSwingMode);
+        mode = getEnuparameter(p, Parameter.MODE, Mode.values(), mode);
+        fanSpeed = getEnuparameter(p, Parameter.FAN_SPEED, FanSpeed.values(), fanSpeed);
+        temperature = getOrdinalParameter(p, Parameter.TEMPERATURE, temperature);
+        temperatureUnit = getEnuparameter(p, Parameter.TEMPERATURE_UNIT, TemperatureUnit.values(), temperatureUnit);
+        poweredOn = getBooleanParameter(p, Parameter.POWER, poweredOn);
+        lightEnabled = getBooleanParameter(p, Parameter.LIGHT, lightEnabled);
+        quietModeEnabled = getBooleanParameter(p, Parameter.QUIET_MODE, quietModeEnabled);
+        turboModeEnabled = getBooleanParameter(p, Parameter.TURBO_MODE, turboModeEnabled);
+        healthModeEnabled = getBooleanParameter(p, Parameter.HEALTH_MODE, healthModeEnabled);
+        airModeEnabled = getBooleanParameter(p, Parameter.AIR_MODE, airModeEnabled);
+        xFanModeEnabled = getBooleanParameter(p, Parameter.XFAN_MODE, xFanModeEnabled);
+        savingModeEnabled = getBooleanParameter(p, Parameter.SAVING_MODE, savingModeEnabled);
+        sleepModeEnabled = getBooleanParameter(p, Parameter.SLEEP_MODE, sleepModeEnabled);
+        verticalSwingMode = getEnuparameter(p, Parameter.VERTICAL_SWING, VerticalSwingMode.values(), verticalSwingMode);
     }
 
-    private static <E> E getEnumParameter(Map<String, Integer> m, Parameter p, E[] values, E def) {
+    private static <E> E getEnuparameter(Map<String, Integer> m, Parameter p, E[] values, E def) {
         if (m.containsKey(p.toString())) {
             int ordinal = m.get(p.toString());
             if (ordinal >= 0 && ordinal < values.length) {
@@ -317,24 +317,24 @@ class DeviceImpl implements Device {
     @Override
     public String toString() {
         return "DeviceImpl{" +
-                "mDeviceId='" + mDeviceId + '\'' +
-                ", mDeviceManager=" + mDeviceManager +
-                ", mLogTag='" + mLogTag + '\'' +
-                ", name='" + mName + '\'' +
-                ", mode=" + mMode +
-                ", mFanSpeed=" + mFanSpeed +
-                ", temperature=" + mTemperature +
-                ", mTemperatureUnit=" + mTemperatureUnit +
-                ", mPoweredOn=" + mPoweredOn +
-                ", mLightEnabled=" + mLightEnabled +
-                ", mQuietModeEnabled=" + mQuietModeEnabled +
-                ", mTurboModeEnabled=" + mTurboModeEnabled +
-                ", mHealthModeEnabled=" + mHealthModeEnabled +
-                ", mAirModeEnabled=" + mAirModeEnabled +
-                ", mXfanModeEnabled=" + mXfanModeEnabled +
-                ", mSavingModeEnabled=" + mSavingModeEnabled +
-                ", mSleepModeEnabled=" + mSleepModeEnabled +
-                ", mVerticalSwingMode=" + mVerticalSwingMode +
+                "deviceId='" + deviceId + '\'' +
+                ", deviceManager=" + deviceManager +
+                ", logTag='" + logTag + '\'' +
+                ", name='" + name + '\'' +
+                ", mode=" + mode +
+                ", fanSpeed=" + fanSpeed +
+                ", temperature=" + temperature +
+                ", temperatureUnit=" + temperatureUnit +
+                ", poweredOn=" + poweredOn +
+                ", lightEnabled=" + lightEnabled +
+                ", quietModeEnabled=" + quietModeEnabled +
+                ", turboModeEnabled=" + turboModeEnabled +
+                ", healthModeEnabled=" + healthModeEnabled +
+                ", airModeEnabled=" + airModeEnabled +
+                ", xFanModeEnabled=" + xFanModeEnabled +
+                ", savingModeEnabled=" + savingModeEnabled +
+                ", sleepModeEnabled=" + sleepModeEnabled +
+                ", verticalSwingMode=" + verticalSwingMode +
                 '}';
     }
 }
