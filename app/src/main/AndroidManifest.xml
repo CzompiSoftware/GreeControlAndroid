@@ -18,7 +18,7 @@
 
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" package="hu.czompisoftware.greecontrol">
+        xmlns:tools="http://schemas.android.com/tools" package="eu.czsoft.legacygreecontrol">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,7 +33,7 @@
 
         <activity
                 android:exported="true"
-                android:name="hu.czompisoftware.greecontrol.MainActivity"
+                android:name="eu.czsoft.legacygreecontrol.MainActivity"
                 android:theme="@style/Theme.GreeControl.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,12 +42,12 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="hu.czompisoftware.greecontrol.DeviceActivity"
-                android:parentActivityName="hu.czompisoftware.greecontrol.MainActivity"
+                android:name="eu.czsoft.legacygreecontrol.DeviceActivity"
+                android:parentActivityName="eu.czsoft.legacygreecontrol.MainActivity"
                 android:launchMode="singleTop"/>
         <activity
-                android:name="hu.czompisoftware.greecontrol.DeviceHelpActivity"
-                android:parentActivityName="hu.czompisoftware.greecontrol.DeviceActivity"/>
+                android:name="eu.czsoft.legacygreecontrol.DeviceHelpActivity"
+                android:parentActivityName="eu.czsoft.legacygreecontrol.DeviceActivity"/>
     </application>
 
 </manifest>
