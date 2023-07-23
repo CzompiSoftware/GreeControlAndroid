@@ -23,7 +23,8 @@ class DeviceImpl implements Device {
         AIR_MODE            ("Air"),
         XFAN_MODE           ("Blo"),
         HEALTH_MODE         ("Health"),
-        SLEEP_MODE          ("SwhSlp"),
+        SLEEP               ("SwhSlp"),
+        SLEEP_MODE          ("SlpMod"),
         QUIET_MODE          ("Quiet"),
         TURBO_MODE          ("Tur"),
         SAVING_MODE         ("SvSt"),
@@ -60,6 +61,7 @@ class DeviceImpl implements Device {
     private boolean airModeEnabled;
     private boolean xFanModeEnabled;
     private boolean savingModeEnabled;
+    private boolean sleepEnabled;
     private boolean sleepModeEnabled;
     private VerticalSwingMode verticalSwingMode = VerticalSwingMode.DEFAULT;
 
@@ -212,13 +214,13 @@ class DeviceImpl implements Device {
     }
 
     @Override
-    public boolean isSleepModeEnabled() {
-        return sleepModeEnabled;
+    public boolean isSleepEnabled() {
+        return sleepEnabled && sleepModeEnabled;
     }
 
     @Override
-    public void setSleepModeEnabled(boolean enabled) {
-        setParameter(Parameter.SLEEP_MODE, enabled ? 1 : 0);
+    public void setSleepEnabled(boolean enabled) {
+        setParameters(new Parameter[] {Parameter.SLEEP, Parameter.SLEEP_MODE}, new Integer[] {enabled ? 1 : 0, enabled ? 1 : 0});
     }
 
     @Override
@@ -242,8 +244,8 @@ class DeviceImpl implements Device {
     }
 
     @Override
-    public void setWifiSsidPassword(String ssid, String psw) {
-        deviceManager.setWifi(ssid, psw);
+    public void setWifiDetails(String ssid, String password) {
+        deviceManager.setWifi(ssid, password);
     }
 
     @Override
@@ -274,28 +276,29 @@ class DeviceImpl implements Device {
         deviceManager.setParameters(this, Utils.zip(names, values));
     }
 
-    private void updateParameters(Map<String, Integer> p) {
-        Log.d(logTag, "Updating parameters: " + p);
+    private void updateParameters(Map<String, Integer> parameterMap) {
+        Log.d(logTag, "Updating parameterMap: " + parameterMap);
 
-        mode = getEnuparameter(p, Parameter.MODE, Mode.values(), mode);
-        fanSpeed = getEnuparameter(p, Parameter.FAN_SPEED, FanSpeed.values(), fanSpeed);
-        temperature = getOrdinalParameter(p, Parameter.TEMPERATURE, temperature);
-        temperatureUnit = getEnuparameter(p, Parameter.TEMPERATURE_UNIT, TemperatureUnit.values(), temperatureUnit);
-        poweredOn = getBooleanParameter(p, Parameter.POWER, poweredOn);
-        lightEnabled = getBooleanParameter(p, Parameter.LIGHT, lightEnabled);
-        quietModeEnabled = getBooleanParameter(p, Parameter.QUIET_MODE, quietModeEnabled);
-        turboModeEnabled = getBooleanParameter(p, Parameter.TURBO_MODE, turboModeEnabled);
-        healthModeEnabled = getBooleanParameter(p, Parameter.HEALTH_MODE, healthModeEnabled);
-        airModeEnabled = getBooleanParameter(p, Parameter.AIR_MODE, airModeEnabled);
-        xFanModeEnabled = getBooleanParameter(p, Parameter.XFAN_MODE, xFanModeEnabled);
-        savingModeEnabled = getBooleanParameter(p, Parameter.SAVING_MODE, savingModeEnabled);
-        sleepModeEnabled = getBooleanParameter(p, Parameter.SLEEP_MODE, sleepModeEnabled);
-        verticalSwingMode = getEnuparameter(p, Parameter.VERTICAL_SWING, VerticalSwingMode.values(), verticalSwingMode);
+        mode = getEnumParameter(parameterMap, Parameter.MODE, Mode.values(), mode);
+        fanSpeed = getEnumParameter(parameterMap, Parameter.FAN_SPEED, FanSpeed.values(), fanSpeed);
+        temperature = getOrdinalParameter(parameterMap, Parameter.TEMPERATURE, temperature);
+        temperatureUnit = getEnumParameter(parameterMap, Parameter.TEMPERATURE_UNIT, TemperatureUnit.values(), temperatureUnit);
+        poweredOn = getBooleanParameter(parameterMap, Parameter.POWER, poweredOn);
+        lightEnabled = getBooleanParameter(parameterMap, Parameter.LIGHT, lightEnabled);
+        quietModeEnabled = getBooleanParameter(parameterMap, Parameter.QUIET_MODE, quietModeEnabled);
+        turboModeEnabled = getBooleanParameter(parameterMap, Parameter.TURBO_MODE, turboModeEnabled);
+        healthModeEnabled = getBooleanParameter(parameterMap, Parameter.HEALTH_MODE, healthModeEnabled);
+        airModeEnabled = getBooleanParameter(parameterMap, Parameter.AIR_MODE, airModeEnabled);
+        xFanModeEnabled = getBooleanParameter(parameterMap, Parameter.XFAN_MODE, xFanModeEnabled);
+        savingModeEnabled = getBooleanParameter(parameterMap, Parameter.SAVING_MODE, savingModeEnabled);
+        sleepEnabled = getBooleanParameter(parameterMap, Parameter.SLEEP, sleepEnabled);
+        sleepModeEnabled = getBooleanParameter(parameterMap, Parameter.SLEEP_MODE, sleepModeEnabled);
+        verticalSwingMode = getEnumParameter(parameterMap, Parameter.VERTICAL_SWING, VerticalSwingMode.values(), verticalSwingMode);
     }
 
-    private static <E> E getEnuparameter(Map<String, Integer> m, Parameter p, E[] values, E def) {
-        if (m.containsKey(p.toString())) {
-            int ordinal = m.get(p.toString());
+    private static <E> E getEnumParameter(Map<String, Integer> parameterMap, Parameter parameter, E[] values, E def) {
+        if (parameterMap.containsKey(parameter.toString())) {
+            int ordinal = parameterMap.get(parameter.toString());
             if (ordinal >= 0 && ordinal < values.length) {
                 return values[ordinal];
             }
@@ -304,14 +307,14 @@ class DeviceImpl implements Device {
         return def;
     }
 
-    private static int getOrdinalParameter(Map<String, Integer> m, Parameter p, int def) {
-        if (m.containsKey(p.toString()))
-            return m.get(p.toString());
+    private static int getOrdinalParameter(Map<String, Integer> parameterMap, Parameter parameter, int def) {
+        if (parameterMap.containsKey(parameter.toString()))
+            return parameterMap.get(parameter.toString());
         return def;
     }
 
-    private static boolean getBooleanParameter(Map<String, Integer> m, Parameter p, boolean def) {
-        return getOrdinalParameter(m, p, def ? 1 : 0) == 1;
+    private static boolean getBooleanParameter(Map<String, Integer> parameterMap, Parameter parameter, boolean def) {
+        return getOrdinalParameter(parameterMap, parameter, def ? 1 : 0) == 1;
     }
 
     @Override
@@ -333,6 +336,7 @@ class DeviceImpl implements Device {
                 ", airModeEnabled=" + airModeEnabled +
                 ", xFanModeEnabled=" + xFanModeEnabled +
                 ", savingModeEnabled=" + savingModeEnabled +
+                ", sleepEnabled=" + sleepEnabled +
                 ", sleepModeEnabled=" + sleepModeEnabled +
                 ", verticalSwingMode=" + verticalSwingMode +
                 '}';

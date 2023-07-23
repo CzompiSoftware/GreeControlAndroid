@@ -77,8 +77,8 @@ public interface Device {
     boolean isSavingModeEnabled();
     void setSavingModeEnabled(boolean enabled);
 
-    boolean isSleepModeEnabled();
-    void setSleepModeEnabled(boolean enabled);
+    boolean isSleepEnabled();
+    void setSleepEnabled(boolean enabled);
 
     VerticalSwingMode getVerticalSwingMode();
     void setVerticalSwingMode(VerticalSwingMode mode);
@@ -86,5 +86,5 @@ public interface Device {
     int getParameter(String name);
     void setParameter(String name, int value);
 
-    void setWifiSsidPassword(String ssid, String psw);
+    void setWifiDetails(String ssid, String password);
 }

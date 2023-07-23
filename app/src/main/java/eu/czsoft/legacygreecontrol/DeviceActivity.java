@@ -1,7 +1,5 @@
 package eu.czsoft.legacygreecontrol;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -90,7 +89,7 @@ public class DeviceActivity extends AppCompatActivity {
         setSwitchChecked(R.id.airSwitch, device.isAirModeEnabled());
         setSwitchChecked(R.id.healthSwitch, device.isHealthModeEnabled());
         setSwitchChecked(R.id.xfanSwitch, device.isXfanModeEnabled());
-        setSwitchChecked(R.id.sleepSwitch, device.isSleepModeEnabled());
+        setSwitchChecked(R.id.sleepSwitch, device.isSleepEnabled());
         setSwitchChecked(R.id.quietSwitch, device.isQuietModeEnabled());
         setSwitchChecked(R.id.turboSwitch, device.isTurboModeEnabled());
         setSwitchChecked(R.id.energySavingSwitch, device.isSavingModeEnabled());
@@ -176,7 +175,7 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
     public void onSleepSwitchClicked(View view) {
-        device.setSleepModeEnabled(isSwitchChecked(R.id.sleepSwitch));
+        device.setSleepEnabled(isSwitchChecked(R.id.sleepSwitch));
     }
 
     public void onQuietSwitchClicked(View view) {
@@ -227,15 +226,14 @@ public class DeviceActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.wifi_settings){
-            final View usernamePasswordView = LayoutInflater.from(this).inflate(R.layout.set_wifi_details, null);
-            new AlertDialog.Builder(this).setView(usernamePasswordView)
-                    .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-                        TextInputEditText name = usernamePasswordView.findViewById(R.id.name);
-                        TextInputEditText password = usernamePasswordView.findViewById(R.id.password);
-                        Log.d("Wi-Fi Settings",name.getText().toString() + " ***");
-                        device.setWifiSsidPassword(name.getText().toString(), password.getText().toString());
-                    }).create().show();
-
+            final View setWiFiDetailsView = LayoutInflater.from(this).inflate(R.layout.set_wifi_details, null);
+            new AlertDialog.Builder(this).setView(setWiFiDetailsView)
+                .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
+                    TextInputEditText name = setWiFiDetailsView.findViewById(R.id.name);
+                    TextInputEditText password = setWiFiDetailsView.findViewById(R.id.password);
+                    Log.d("Wi-Fi setup","SSID: '" + name.getText().toString() + "' Password: ***");
+                    device.setWifiDetails(name.getText().toString(), password.getText().toString());
+                }).create().show();
         }
         return true;
     }
