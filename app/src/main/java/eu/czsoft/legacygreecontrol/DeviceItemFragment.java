@@ -62,8 +62,7 @@ public class DeviceItemFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_deviceitem_list, container, false);
 
         // Set the adapter
@@ -108,8 +107,7 @@ public class DeviceItemFragment extends Fragment {
         if (context instanceof OnListFragmentInteractionListener) {
             listener = (OnListFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+            throw new RuntimeException(context + " must implement OnListFragmentInteractionListener");
         }
     }
 
