@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol;
+package eu.czsoft.greecontrolandroid;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
 
-        assertEquals("eu.czsoft.legacygreecontrol", appContext.getPackageName());
+        assertEquals("eu.czsoft.greecontrolandroid", appContext.getPackageName());
     }
 }

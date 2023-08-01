@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol;
+package eu.czsoft.greecontrolandroid;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,13 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import eu.czsoft.greesdk.device.DeviceManager;
+import eu.czsoft.greesdk.DeviceManager;
+import eu.czsoft.greesdk.appliances.ApplianceType;
 
 public class MainActivity extends AppCompatActivity
     implements DeviceItemFragment.OnListFragmentInteractionListener {
 
-    public static String EXTRA_DEVICE_ITEM = "eu.czsoft.legacygreecontrol.DEVICEITEM";
+    public static String EXTRA_DEVICE_ITEM = "eu.czsoft.greecontrolandroid.DEVICEITEM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(DeviceItem item) {
-        Intent intent = new Intent(this, DeviceActivity.class);
+
+        Intent intent;
+        if(item.type == ApplianceType.AC) {
+            intent = new Intent(this, AirConditionerDeviceActivity.class);
+        } else {
+            intent = new Intent(this, DeviceActivity.class);
+        }
         intent.putExtra(EXTRA_DEVICE_ITEM, item);
         startActivity(intent);
     }

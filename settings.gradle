@@ -3,6 +3,10 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            name = 'czsoft'
+            url = 'https://maven.czsoft.eu/releases/'
+        }
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +14,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = 'czsoft'
+            url = 'https://maven.czsoft.eu/releases/'
+        }
     }
 }
 

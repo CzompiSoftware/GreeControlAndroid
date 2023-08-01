@@ -2,7 +2,7 @@
 
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" package="eu.czsoft.legacygreecontrol">
+        xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -21,7 +21,7 @@
 
         <activity
                 android:exported="true"
-                android:name="eu.czsoft.legacygreecontrol.MainActivity"
+                android:name="eu.czsoft.greecontrolandroid.MainActivity"
                 android:theme="@style/Theme.GreeControl.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,12 +30,12 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="eu.czsoft.legacygreecontrol.DeviceActivity"
-                android:parentActivityName="eu.czsoft.legacygreecontrol.MainActivity"
+                android:name="eu.czsoft.greecontrolandroid.DeviceActivity"
+                android:parentActivityName="eu.czsoft.greecontrolandroid.MainActivity"
                 android:launchMode="singleTop"/>
         <activity
-                android:name="eu.czsoft.legacygreecontrol.DeviceHelpActivity"
-                android:parentActivityName="eu.czsoft.legacygreecontrol.DeviceActivity"/>
+                android:name="eu.czsoft.greecontrolandroid.AirConditionerDeviceHelpActivity"
+                android:parentActivityName="eu.czsoft.greecontrolandroid.DeviceActivity"/>
     </application>
 
 </manifest>

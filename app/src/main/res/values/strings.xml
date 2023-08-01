@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Gree Control (old)</string>
+    <string name="app_name" translatable="false">Gree Control Android</string>
     <string name="action_settings">Settings</string>
     <string name="mode_auto">Automatic</string>
     <string name="mode_cool">Cool</string>

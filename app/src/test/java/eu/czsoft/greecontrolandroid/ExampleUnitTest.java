@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol;
+package eu.czsoft.greecontrolandroid;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol;
+package eu.czsoft.greecontrolandroid;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.czsoft.greesdk.device.Device;
-import eu.czsoft.greesdk.device.DeviceManager;
-import eu.czsoft.greesdk.device.DeviceManagerEventListener;
+import eu.czsoft.greesdk.DeviceManager;
+import eu.czsoft.greesdk.DeviceManagerEvent;
+import eu.czsoft.greesdk.DeviceManagerEventListener;
+import eu.czsoft.greesdk.appliances.Appliance;
 
 /**
  * A fragment representing a list of Items.
@@ -83,9 +84,9 @@ public class DeviceItemFragment extends Fragment {
 
             deviceManagerEventListener = new DeviceManagerEventListener() {
                 @Override
-                public void onEvent(Event event) {
-                if (event == Event.DEVICE_LIST_UPDATED || event == Event.DEVICE_STATUS_UPDATED)
-                    updateDeviceList();
+                public void onEvent(DeviceManagerEvent event) {
+                    if (event == DeviceManagerEvent.DEVICE_LIST_UPDATED || event == DeviceManagerEvent.DEVICE_STATUS_UPDATED)
+                        updateDeviceList();
                 }
             };
 
@@ -140,8 +141,8 @@ public class DeviceItemFragment extends Fragment {
 
         final List<DeviceItem> items = new ArrayList<>();
 
-        for (Device d : DeviceManager.getInstance().getDevices()) {
-            items.add(new DeviceItem(d));
+        for (Appliance appliance : DeviceManager.getInstance().getDevices()) {
+            items.add(new DeviceItem(appliance));
         }
 
         RecyclerView recyclerView = (RecyclerView) view;

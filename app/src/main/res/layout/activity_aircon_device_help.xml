@@ -5,6 +5,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="eu.czsoft.legacygreecontrol.DeviceHelpActivity">
+        tools:context="eu.czsoft.greecontrolandroid.AirConditionerDeviceHelpActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

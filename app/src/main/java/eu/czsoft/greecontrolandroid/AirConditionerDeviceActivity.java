@@ -1,4 +1,4 @@
-package eu.czsoft.legacygreecontrol;
+package eu.czsoft.greecontrolandroid;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,22 +21,26 @@ import androidx.core.content.res.ResourcesCompat;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.textfield.TextInputEditText;
 
-import eu.czsoft.greesdk.device.Device;
-import eu.czsoft.greesdk.device.DeviceManager;
-import eu.czsoft.greesdk.device.DeviceManagerEventListener;
+import eu.czsoft.greesdk.DeviceManager;
+import eu.czsoft.greesdk.DeviceManagerEvent;
+import eu.czsoft.greesdk.DeviceManagerEventListener;
+import eu.czsoft.greesdk.appliances.AirConditionerAppliance;
+import eu.czsoft.greesdk.appliances.airconditioner.FanSpeed;
+import eu.czsoft.greesdk.appliances.airconditioner.Mode;
+import eu.czsoft.greesdk.appliances.airconditioner.TemperatureUnit;
 
-public class DeviceActivity extends AppCompatActivity {
+public class AirConditionerDeviceActivity extends AppCompatActivity {
     private DeviceItem deviceItem;
     private TextView temperatureTextView;
-    private Device device;
+    private AirConditionerAppliance device;
     private DeviceManagerEventListener deviceManagerEventListener;
 
-    public static String EXTRA_FEATURE_HELP = "eu.czsoft.legacygreecontrol.FEATURE_HELP";
+    public static String EXTRA_FEATURE_HELP = "eu.czsoft.greecontrolandroid.FEATURE_HELP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_device);
+        setContentView(R.layout.activity_aircon_device);
 
         temperatureTextView = findViewById(R.id.temperatureTextView);
 
@@ -45,10 +49,10 @@ public class DeviceActivity extends AppCompatActivity {
 
         setTitle(deviceItem.name);
 
-        device = DeviceManager.getInstance().getDevice(deviceItem.id);
+        device = (AirConditionerAppliance) DeviceManager.getInstance().getDevice(deviceItem.id);
 
         deviceManagerEventListener = event -> {
-            if (event == DeviceManagerEventListener.Event.DEVICE_STATUS_UPDATED)
+            if (event == DeviceManagerEvent.DEVICE_STATUS_UPDATED)
                 update();
         };
 
@@ -77,13 +81,13 @@ public class DeviceActivity extends AppCompatActivity {
         int activeColor = ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null);
         int inactiveColor = MaterialColors.getColor(temperatureTextView, R.attr.colorSecondaryTextVariant, Color.BLACK);
 
-        final Device.Mode mode = device.getMode();
+        final Mode mode = device.getMode();
 
-        setImageButtonColorFilter(R.id.autoModeButton, mode == Device.Mode.AUTO ? activeColor : inactiveColor);
-        setImageButtonColorFilter(R.id.coolModeButton, mode == Device.Mode.COOL ? activeColor : inactiveColor);
-        setImageButtonColorFilter(R.id.dryModeButton, mode == Device.Mode.DRY ? activeColor : inactiveColor);
-        setImageButtonColorFilter(R.id.fanModeButton, mode == Device.Mode.FAN ? activeColor : inactiveColor);
-        setImageButtonColorFilter(R.id.heatModeButton, mode == Device.Mode.HEAT ? activeColor : inactiveColor);
+        setImageButtonColorFilter(R.id.autoModeButton, mode == Mode.AUTO ? activeColor : inactiveColor);
+        setImageButtonColorFilter(R.id.coolModeButton, mode == Mode.COOL ? activeColor : inactiveColor);
+        setImageButtonColorFilter(R.id.dryModeButton, mode == Mode.DRY ? activeColor : inactiveColor);
+        setImageButtonColorFilter(R.id.fanModeButton, mode == Mode.FAN ? activeColor : inactiveColor);
+        setImageButtonColorFilter(R.id.heatModeButton, mode == Mode.HEAT ? activeColor : inactiveColor);
         setImageButtonColorFilter(R.id.powerButton, device.isPoweredOn() ? activeColor : inactiveColor);
 
         setSwitchChecked(R.id.airSwitch, device.isAirModeEnabled());
@@ -99,63 +103,63 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
     public void onAirHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.AIR);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.AIR);
     }
 
     public void onHealthHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.HEALTH);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.HEALTH);
     }
 
     public void onDryHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.DRY);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.DRY);
     }
 
     public void onSleepHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.SLEEP);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.SLEEP);
     }
 
     public void onQuietHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.QUIET);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.QUIET);
     }
 
     public void onTurboHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.TURBO);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.TURBO);
     }
 
     public void onSavingHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.SAVING);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.SAVING);
     }
 
     public void onLightHelpButtonClicked(View view) {
-        startHelpActivity(DeviceHelpActivity.Feature.LIGHT);
+        startHelpActivity(AirConditionerDeviceHelpActivity.Feature.LIGHT);
     }
 
     public void onAutoModeButtonClicked(View view) {
-        device.setMode(Device.Mode.AUTO);
+        device.setMode(Mode.AUTO);
     }
 
     public void onCoolModeButtonClicked(View view) {
-        device.setMode(Device.Mode.COOL);
+        device.setMode(Mode.COOL);
     }
 
     public void onDryModeButtonClicked(View view) {
-        device.setMode(Device.Mode.DRY);
+        device.setMode(Mode.DRY);
     }
 
     public void onFanModeButtonClicked(View view) {
-        device.setMode(Device.Mode.FAN);
+        device.setMode(Mode.FAN);
     }
 
     public void onHeatModeButtonClicked(View view) {
-        device.setMode(Device.Mode.HEAT);
+        device.setMode(Mode.HEAT);
     }
 
     public void onPlusButtonClicked(View view) {
-        device.setTemperature(device.getTemperature() + 1, Device.TemperatureUnit.CELSIUS);
+        device.setTemperature(device.getTemperature() + 1, TemperatureUnit.CELSIUS);
     }
 
     public void onMinusButtonClicked(View view) {
-        device.setTemperature(device.getTemperature() - 1, Device.TemperatureUnit.CELSIUS);
+        device.setTemperature(device.getTemperature() - 1, TemperatureUnit.CELSIUS);
     }
 
     public void onPowerButtonClicked(View view) {
@@ -194,8 +198,8 @@ public class DeviceActivity extends AppCompatActivity {
         device.setLightEnabled(isSwitchChecked(R.id.lightSwitch));
     }
 
-    private void startHelpActivity(DeviceHelpActivity.Feature feature) {
-        Intent intent = new Intent(this, DeviceHelpActivity.class);
+    private void startHelpActivity(AirConditionerDeviceHelpActivity.Feature feature) {
+        Intent intent = new Intent(this, AirConditionerDeviceHelpActivity.class);
         intent.putExtra(EXTRA_FEATURE_HELP, feature);
         startActivity(intent);
     }
@@ -232,7 +236,7 @@ public class DeviceActivity extends AppCompatActivity {
                     TextInputEditText name = setWiFiDetailsView.findViewById(R.id.name);
                     TextInputEditText password = setWiFiDetailsView.findViewById(R.id.password);
                     Log.d("Wi-Fi setup","SSID: '" + name.getText().toString() + "' Password: ***");
-                    device.setWifiDetails(name.getText().toString(), password.getText().toString());
+                    device.setWiFiDetails(name.getText().toString(), password.getText().toString());
                 }).create().show();
         }
         return true;
@@ -251,7 +255,7 @@ public class DeviceActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // FIXME: int might be used for fan speed instead of enum
-                device.setFanSpeed(Device.FanSpeed.values()[seekBar.getProgress()]);
+                device.setFanSpeed(FanSpeed.values()[seekBar.getProgress()]);
             }
         });
     }

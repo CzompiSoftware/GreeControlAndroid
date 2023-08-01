@@ -1,8 +1,8 @@
-package eu.czsoft.legacygreecontrol;
+package eu.czsoft.greecontrolandroid;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-public class DeviceHelpActivity extends AppCompatActivity {
+public class AirConditionerDeviceHelpActivity extends AppCompatActivity {
     private Feature feature;
 
     public enum Feature {
@@ -20,9 +20,9 @@ public class DeviceHelpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_device_help);
+        setContentView(R.layout.activity_aircon_device_help);
 
-        feature = (Feature) getIntent().getSerializableExtra(DeviceActivity.EXTRA_FEATURE_HELP);
+        feature = (Feature) getIntent().getSerializableExtra(AirConditionerDeviceActivity.EXTRA_FEATURE_HELP);
 
         updateTitle();
     }
