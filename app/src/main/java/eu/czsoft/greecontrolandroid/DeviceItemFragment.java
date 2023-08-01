@@ -2,6 +2,7 @@ package eu.czsoft.greecontrolandroid;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,12 +83,10 @@ public class DeviceItemFragment extends Fragment {
             DeviceManager dm = DeviceManager.getInstance();
             dm.unregisterEventListener(deviceManagerEventListener);
 
-            deviceManagerEventListener = new DeviceManagerEventListener() {
-                @Override
-                public void onEvent(DeviceManagerEvent event) {
-                    if (event == DeviceManagerEvent.DEVICE_LIST_UPDATED || event == DeviceManagerEvent.DEVICE_STATUS_UPDATED)
-                        updateDeviceList();
-                }
+            deviceManagerEventListener = event -> {
+                Log.d("DeviceItemFragment", event.toString());
+                if (event == DeviceManagerEvent.DEVICE_LIST_UPDATED || event == DeviceManagerEvent.DEVICE_STATUS_UPDATED)
+                    updateDeviceList();
             };
 
             dm.registerEventListener(deviceManagerEventListener);
